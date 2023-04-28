@@ -25,8 +25,15 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**")
-                .permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/v2/api-docs").permitAll()
+                .requestMatchers("/configuration/ui").permitAll()
+                .requestMatchers("/swagger-resources/**").permitAll()
+                .requestMatchers("/configuration/security").permitAll()
+                .requestMatchers("/swagger-ui.html").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/webjars/**").permitAll()
+                .requestMatchers("/v2/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -34,7 +41,8 @@ public class SecurityConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors();
 
         return http.build();
     }
