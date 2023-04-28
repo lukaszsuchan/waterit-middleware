@@ -2,9 +2,7 @@ package agh.iss.wateritmiddleware.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +28,8 @@ public class User implements UserDetails {
     private boolean expired = false;
     private boolean credentialsExpired = false;
     private boolean locked = false;
+    @Getter
+    @Setter
     private Role role;
 
     @Override
@@ -49,17 +49,17 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return credentialsExpired;
+        return !credentialsExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return locked;
+        return !locked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return credentialsExpired;
+        return !credentialsExpired;
     }
 
     @Override
