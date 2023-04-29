@@ -32,3 +32,9 @@ logging:
   level:
     org.springframework.security: DEBUG
     springfox: DEBUG
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
