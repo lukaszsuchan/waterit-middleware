@@ -7,8 +7,6 @@ import agh.iss.wateritmiddleware.config.JwtService;
 import agh.iss.wateritmiddleware.exception.CoreException;
 import agh.iss.wateritmiddleware.exception.ErrorCode;
 import agh.iss.wateritmiddleware.exception.ErrorSubcode;
-import agh.iss.wateritmiddleware.token.Token;
-import agh.iss.wateritmiddleware.token.TokenType;
 import agh.iss.wateritmiddleware.user.Role;
 import agh.iss.wateritmiddleware.user.User;
 import agh.iss.wateritmiddleware.user.UserRepository;
@@ -16,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +53,7 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        UserDetails user = userRepository.findByUsername(request.getUsername())
+        UserDetails user = userRepository.findUserDetailsByUsername(request.getUsername())
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.USER_NOT_FOUND));
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
