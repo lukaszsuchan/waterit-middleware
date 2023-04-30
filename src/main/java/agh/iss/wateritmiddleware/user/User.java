@@ -30,6 +30,7 @@ public class User implements UserDetails {
     private boolean locked = false;
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @Override
