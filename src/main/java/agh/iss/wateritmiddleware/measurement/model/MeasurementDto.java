@@ -1,8 +1,7 @@
 package agh.iss.wateritmiddleware.measurement.model;
 
+import agh.iss.wateritmiddleware.measurement.MeasurementType;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,6 +12,7 @@ public record MeasurementDto(
         BigDecimal humidity,
         BigDecimal moistureHumidity,
         BigDecimal rainfall,
-        BigDecimal airPurity
+        BigDecimal airPurity,
+        MeasurementType measurementType
         ) {
 }

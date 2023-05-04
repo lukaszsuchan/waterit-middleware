@@ -1,7 +1,6 @@
 package agh.iss.wateritmiddleware.measurement;
 
 import agh.iss.wateritmiddleware.measurement.model.MeasurementDto;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
