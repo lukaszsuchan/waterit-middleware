@@ -22,7 +22,7 @@ public class Field {
     private Long id;
     private String name;
     private BigDecimal area;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private CropType actualCropType;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
