@@ -22,6 +22,7 @@ public class Zone {
     private BigDecimal area;
     @Enumerated(EnumType.STRING)
     private CropType actualCropType;
+    private Boolean autoSeperated;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "field_id")
     private Field field;

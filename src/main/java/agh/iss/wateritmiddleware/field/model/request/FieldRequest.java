@@ -1,4 +1,4 @@
-package agh.iss.wateritmiddleware.field.model;
+package agh.iss.wateritmiddleware.field.model.request;
 
 import agh.iss.wateritmiddleware.field.CropType;
 import lombok.Builder;
