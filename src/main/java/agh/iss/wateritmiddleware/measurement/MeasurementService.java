@@ -14,8 +14,8 @@ public class MeasurementService {
     private final MeasurementRepository measurementRepository;
     private final MeasurementMapper measurementMapper;
 
-    public MeasurementDto getLatestMeasurement() {
-        return measurementRepository.findTopByOrderByDateDesc()
+    public MeasurementDto getLatestMeasurementByZoneId(Long zoneId) {
+        return measurementRepository.findTopByZoneIdOrderByDateDesc(zoneId)
                 .map(measurementMapper::toDto)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.MEASUREMENT_NOT_FOUND));
     }

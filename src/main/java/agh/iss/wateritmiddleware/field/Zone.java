@@ -28,8 +28,6 @@ public class Zone {
     @JoinColumn(name = "field_id")
     private Field field;
     @OneToOne(cascade = CascadeType.ALL)
-    private Measurement measurement;
-    @OneToOne(cascade = CascadeType.ALL)
     private Device device;
 
 }
