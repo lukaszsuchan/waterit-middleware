@@ -1,5 +1,6 @@
 package agh.iss.wateritmiddleware.field;
 
+import agh.iss.wateritmiddleware.device.Device;
 import agh.iss.wateritmiddleware.exception.CoreException;
 import agh.iss.wateritmiddleware.exception.ErrorCode;
 import agh.iss.wateritmiddleware.exception.ErrorSubcode;
@@ -69,6 +70,10 @@ public class FieldService {
                 .actualCropType(request.actualCropType())
                 .autoSeperated(false)
                 .field(field)
+                .device(Device.builder()
+                        .externalDeviceId(request.addDeviceRequest().externalDeviceId())
+                        .active(true)
+                        .build())
                 .build();
         final var restFieldZone = Zone.builder()
                 .name(field.getName() + "-zone")
