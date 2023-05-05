@@ -10,9 +10,11 @@ import agh.iss.wateritmiddleware.field.model.FieldDto;
 import agh.iss.wateritmiddleware.field.model.ZoneDto;
 import agh.iss.wateritmiddleware.field.model.request.FieldRequest;
 import agh.iss.wateritmiddleware.field.model.request.ZoneRequest;
+import agh.iss.wateritmiddleware.measurement.MeasurementService;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,6 +25,7 @@ public class FieldService {
 
     private final FieldRepository fieldRepository;
     private final ZoneRepository zoneRepository;
+    private final MeasurementService measurementService;
     private final FieldMapper fieldMapper;
     private final ZoneMapper zoneMapper;
     private final CurrentUser currentUser;
@@ -52,10 +55,12 @@ public class FieldService {
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
     }
 
+    @Transactional
     public Long addZoneAndSplitField(Long fieldId, ZoneRequest request) {
         final var field = fieldRepository.findById(fieldId)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
-        double remainingArea = field.getZones().isEmpty() ? field.getArea().doubleValue() :
+        boolean firstZoneAdding = field.getZones().isEmpty();
+        double remainingArea = firstZoneAdding ? field.getArea().doubleValue() :
                 field.getZones().stream()
                         .filter(zone -> zone.getAutoSeperated() == Boolean.TRUE)
                         .map(Zone::getArea)
@@ -76,7 +81,7 @@ public class FieldService {
                         .build())
                 .build();
         final var restFieldZone = Zone.builder()
-                .name(field.getName() + "-zone")
+                .name(field.getName() + " - unmeasurable")
                 .area(BigDecimal.valueOf(remainingArea - request.area().doubleValue()))
                 .actualCropType(field.getActualCropType())
                 .autoSeperated(true)
@@ -84,6 +89,15 @@ public class FieldService {
                 .build();
 
         Long zoneId = zoneRepository.save(initZone).getId();
+        measurementService.addMeasurementToZone(initZone);
+
+        final var autoSeparatedToSwap = zoneRepository.findByAutoSeperatedIsTrue()
+                .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.ZONE_NOT_FOUND));
+        final var autoSeparatedToSwapIds = autoSeparatedToSwap.stream()
+                .map(Zone::getId)
+                .toList();
+
+        zoneRepository.deleteByIdIn(autoSeparatedToSwapIds);
         zoneRepository.save(restFieldZone);
 
         return zoneId;

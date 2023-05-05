@@ -8,10 +8,10 @@ import agh.iss.wateritmiddleware.measurement.model.MeasurementDto;
 import java.math.BigDecimal;
 
 public record ZoneDto(
+        Long id,
         String name,
         BigDecimal area,
         CropType cropType,
-        MeasurementDto measurement,
         DeviceDto device
 ) {
 }

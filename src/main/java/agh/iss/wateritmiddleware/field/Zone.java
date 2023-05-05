@@ -29,5 +29,7 @@ public class Zone {
     private Field field;
     @OneToOne(cascade = CascadeType.ALL)
     private Device device;
+    @OneToOne(mappedBy = "zone", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Measurement measurement;
 
 }

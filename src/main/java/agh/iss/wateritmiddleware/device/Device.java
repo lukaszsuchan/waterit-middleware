@@ -19,4 +19,6 @@ public class Device {
     @Column(unique = true)
     private String externalDeviceId;
     boolean active;
+    @OneToOne(mappedBy = "device", orphanRemoval = true)
+    private Zone zone;
 }

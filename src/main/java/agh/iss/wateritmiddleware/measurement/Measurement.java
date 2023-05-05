@@ -30,9 +30,9 @@ public class Measurement {
     private BigDecimal airPurity;
     @Enumerated(EnumType.STRING)
     private MeasurementType measurementType;
-    @OneToOne(mappedBy = "measurement")
+    @OneToOne(mappedBy = "measurement", cascade = CascadeType.ALL)
     private Field field;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Zone zone;
 
     @AssertTrue(message = "Measurement can only be assigned to either field or zone")

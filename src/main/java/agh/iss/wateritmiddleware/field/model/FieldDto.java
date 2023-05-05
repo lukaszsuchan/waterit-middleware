@@ -10,7 +10,6 @@ public record FieldDto(
     String name,
     BigDecimal area,
     CropType actualcropType,
-    MeasurementDto measurement,
     List<ZoneDto> zones
 ) {
 }
