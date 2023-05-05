@@ -13,12 +13,12 @@ import lombok.*;
 @Table(name = "device")
 public class Device {
 
-    boolean active;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private String externalDeviceId;
+    private boolean active;
     @OneToOne(mappedBy = "device", orphanRemoval = true)
     private Zone zone;
 }
