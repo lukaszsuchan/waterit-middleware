@@ -2,7 +2,7 @@ package agh.iss.wateritmiddleware.measurement;
 
 import agh.iss.wateritmiddleware.field.Field;
 import agh.iss.wateritmiddleware.field.Zone;
-import jakarta.persistence.*;;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
 import lombok.*;
 

@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 public interface MeasurementMapper {
 
     MeasurementDto toDto(Measurement measurement);
+
     Measurement toJpa(MeasurementDto measurementDto);
 }
