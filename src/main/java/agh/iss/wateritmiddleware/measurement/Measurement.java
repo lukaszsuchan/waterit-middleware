@@ -2,7 +2,7 @@ package agh.iss.wateritmiddleware.measurement;
 
 import agh.iss.wateritmiddleware.field.Field;
 import agh.iss.wateritmiddleware.field.Zone;
-import jakarta.persistence.*;;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
 import lombok.*;
 
@@ -30,9 +30,9 @@ public class Measurement {
     private BigDecimal airPurity;
     @Enumerated(EnumType.STRING)
     private MeasurementType measurementType;
-    @OneToOne(mappedBy = "measurement")
+    @OneToOne(mappedBy = "measurement", cascade = CascadeType.ALL)
     private Field field;
-    @OneToOne(mappedBy = "measurement")
+    @OneToOne
     private Zone zone;
 
     @AssertTrue(message = "Measurement can only be assigned to either field or zone")

@@ -49,7 +49,7 @@ public class AuthenticationService {
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
-        
+
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

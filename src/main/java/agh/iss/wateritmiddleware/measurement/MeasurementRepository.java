@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface MeasurementRepository extends JpaRepository<Measurement, Long> {
 
-    Optional<Measurement> findTopByOrderByDateDesc();
+    Optional<Measurement> findTopByZoneIdOrderByDateDesc(Long zoneId);
 }
