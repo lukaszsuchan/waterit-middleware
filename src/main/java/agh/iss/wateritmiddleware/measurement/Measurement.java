@@ -32,7 +32,7 @@ public class Measurement {
     private MeasurementType measurementType;
     @OneToOne(mappedBy = "measurement", cascade = CascadeType.ALL)
     private Field field;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     private Zone zone;
 
     @AssertTrue(message = "Measurement can only be assigned to either field or zone")
