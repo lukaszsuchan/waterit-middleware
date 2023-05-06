@@ -2,8 +2,6 @@ package agh.iss.wateritmiddleware.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
 public interface TokenRepository extends JpaRepository<Token, Long>, TokenRepositoryCustom {
 
 //    @Query(value = """
@@ -12,6 +10,4 @@ public interface TokenRepository extends JpaRepository<Token, Long>, TokenReposi
 //      where u.id = :id and (t.expired = false or t.revoked = false)\s
 //      """)
 //    List<Token> findAllValidTokenByUser(Long id);
-
-    Optional<Token> findByToken(String token);
 }

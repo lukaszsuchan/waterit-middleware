@@ -38,7 +38,7 @@ public class User implements UserDetails {
     @Getter
     @Setter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Field> fields;
+    private transient List<Field> fields;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

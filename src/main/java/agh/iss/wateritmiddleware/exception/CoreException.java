@@ -11,8 +11,8 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @AllArgsConstructor
 public class CoreException extends RuntimeException {
 
-    final private ErrorCode errorCode;
-    final private ErrorSubcode errorSubcode;
+    private final ErrorCode errorCode;
+    private final ErrorSubcode errorSubcode;
 
     @Override
     public String toString() {
