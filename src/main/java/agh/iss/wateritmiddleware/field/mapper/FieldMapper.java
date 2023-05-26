@@ -6,7 +6,7 @@ import agh.iss.wateritmiddleware.measurement.MeasurementMapper;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring",
-        uses = {MeasurementMapper.class, ZoneMapper.class})
+        uses = {MeasurementMapper.class})
 public interface FieldMapper {
 
     FieldDto toDto(Field field);

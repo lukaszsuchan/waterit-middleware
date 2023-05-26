@@ -1,5 +1,6 @@
 package agh.iss.wateritmiddleware.field;
 
+import agh.iss.wateritmiddleware.device.Device;
 import agh.iss.wateritmiddleware.measurement.Measurement;
 import agh.iss.wateritmiddleware.user.User;
 import jakarta.persistence.*;
@@ -27,8 +28,8 @@ public class Field {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
-    private List<Zone> zones;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
+    private Device device;
+    @OneToOne(mappedBy = "field", cascade = CascadeType.ALL)
     private Measurement measurement;
 }

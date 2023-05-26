@@ -13,7 +13,7 @@ public class MeasurementController {
     private final MeasurementService measurementService;
 
     @GetMapping("/latest")
-    public ResponseEntity<MeasurementDto> getLatestMeasurement(@RequestParam Long zoneId) {
-        return ResponseEntity.ok(measurementService.getLatestMeasurementByZoneId(zoneId));
+    public ResponseEntity<MeasurementDto> getLatestMeasurement(@RequestParam Long fieldId) {
+        return ResponseEntity.ok(measurementService.getLatestMeasurementByFieldId(fieldId));
     }
 }

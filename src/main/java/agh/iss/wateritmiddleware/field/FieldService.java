@@ -1,22 +1,16 @@
 package agh.iss.wateritmiddleware.field;
 
-import agh.iss.wateritmiddleware.device.Device;
 import agh.iss.wateritmiddleware.exception.CoreException;
 import agh.iss.wateritmiddleware.exception.ErrorCode;
 import agh.iss.wateritmiddleware.exception.ErrorSubcode;
 import agh.iss.wateritmiddleware.field.mapper.FieldMapper;
-import agh.iss.wateritmiddleware.field.mapper.ZoneMapper;
 import agh.iss.wateritmiddleware.field.model.FieldDto;
-import agh.iss.wateritmiddleware.field.model.ZoneDto;
 import agh.iss.wateritmiddleware.field.model.request.FieldRequest;
-import agh.iss.wateritmiddleware.field.model.request.ZoneRequest;
 import agh.iss.wateritmiddleware.measurement.MeasurementService;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -24,10 +18,8 @@ import java.util.List;
 public class FieldService {
 
     private final FieldRepository fieldRepository;
-    private final ZoneRepository zoneRepository;
     private final MeasurementService measurementService;
     private final FieldMapper fieldMapper;
-    private final ZoneMapper zoneMapper;
     private final CurrentUser currentUser;
 
     public Long addField(FieldRequest request) {
@@ -39,6 +31,8 @@ public class FieldService {
                 .build();
 
         final var createdField = fieldRepository.save(field);
+        measurementService.addMeasurementToField(createdField);
+
         return createdField.getId();
     }
 
@@ -53,60 +47,6 @@ public class FieldService {
                 .filter(field -> field.getUser().getId() == currentUser.getUserInfo().getId())
                 .map(fieldMapper::toDto)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
-    }
-
-    @Transactional
-    public Long addZoneAndSplitField(Long fieldId, ZoneRequest request) {
-        final var field = fieldRepository.findById(fieldId)
-                .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
-        boolean firstZoneAdding = field.getZones().isEmpty();
-        double remainingArea = firstZoneAdding ? field.getArea().doubleValue() :
-                field.getZones().stream()
-                        .filter(zone -> zone.getAutoSeperated() == Boolean.TRUE)
-                        .map(Zone::getArea)
-                        .mapToDouble(BigDecimal::doubleValue)
-                        .sum();
-        if (request.area().doubleValue() >= remainingArea) {
-            throw new CoreException(ErrorCode.VALIDATION_ERROR, ErrorSubcode.INCORRECT_ZONE_AREA);
-        }
-        final var initZone = Zone.builder()
-                .name(request.name())
-                .area(request.area())
-                .actualCropType(request.actualCropType())
-                .autoSeperated(false)
-                .field(field)
-                .device(Device.builder()
-                        .externalDeviceId(request.addDeviceRequest().externalDeviceId())
-                        .active(true)
-                        .build())
-                .build();
-        final var restFieldZone = Zone.builder()
-                .name(field.getName() + " - unmeasurable")
-                .area(BigDecimal.valueOf(remainingArea - request.area().doubleValue()))
-                .actualCropType(field.getActualCropType())
-                .autoSeperated(true)
-                .field(field)
-                .build();
-
-        Long zoneId = zoneRepository.save(initZone).getId();
-        measurementService.addMeasurementToZone(initZone);
-
-        final var autoSeparatedToSwap = zoneRepository.findByAutoSeperatedIsTrue()
-                .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.ZONE_NOT_FOUND));
-        final var autoSeparatedToSwapIds = autoSeparatedToSwap.stream()
-                .map(Zone::getId)
-                .toList();
-
-        zoneRepository.deleteByIdIn(autoSeparatedToSwapIds);
-        zoneRepository.save(restFieldZone);
-
-        return zoneId;
-    }
-
-    public List<ZoneDto> getAllFieldZone(Long fieldId) {
-        return zoneRepository.findAllByFieldId(fieldId).stream()
-                .map(zoneMapper::toDto)
-                .toList();
     }
 }
 
