@@ -46,11 +46,13 @@ public class User implements UserDetails {
     }
 
     @Override
+    @NotNull
     public String getPassword() {
         return password;
     }
 
     @Override
+    @NotNull
     public String getUsername() {
         return username;
     }

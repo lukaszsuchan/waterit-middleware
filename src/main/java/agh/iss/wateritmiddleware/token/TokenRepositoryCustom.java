@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface TokenRepositoryCustom {
 
-    List<Token> findAllValidTokenByUser(Integer id);
+    List<Token> findAllValidTokenByUser(Long id);
 }
