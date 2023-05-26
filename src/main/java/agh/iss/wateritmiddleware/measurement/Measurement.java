@@ -1,7 +1,6 @@
 package agh.iss.wateritmiddleware.measurement;
 
 import agh.iss.wateritmiddleware.field.Field;
-import agh.iss.wateritmiddleware.field.Zone;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.AssertTrue;
 import lombok.*;
@@ -28,15 +27,11 @@ public class Measurement {
     private BigDecimal moistureHumidity;
     private BigDecimal rainfall;
     private BigDecimal airPurity;
-    @Enumerated(EnumType.STRING)
-    private MeasurementType measurementType;
-    @OneToOne(mappedBy = "measurement", cascade = CascadeType.ALL)
-    private Field field;
     @OneToOne
-    private Zone zone;
+    private Field field;
 
-    @AssertTrue(message = "Measurement can only be assigned to either field or zone")
+    @AssertTrue(message = "Measurement can only be assigned to field")
     private boolean isValid() {
-        return (field == null) != (zone == null);
+        return field != null;
     }
 }

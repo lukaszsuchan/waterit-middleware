@@ -1,6 +1,6 @@
 package agh.iss.wateritmiddleware.device;
 
-import agh.iss.wateritmiddleware.field.Zone;
+import agh.iss.wateritmiddleware.field.Field;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,5 +20,5 @@ public class Device {
     private String externalDeviceId;
     private boolean active;
     @OneToOne(mappedBy = "device", orphanRemoval = true)
-    private Zone zone;
+    private Field zone;
 }
