@@ -2,6 +2,7 @@ package agh.iss.wateritmiddleware.field;
 
 import agh.iss.wateritmiddleware.field.model.FieldDto;
 import agh.iss.wateritmiddleware.field.model.request.FieldRequest;
+import agh.iss.wateritmiddleware.field.model.response.CropTypeResponse;
 import agh.iss.wateritmiddleware.utils.UriBuilder;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,11 @@ public class FieldController {
         var locationUri = uriBuilder.requestUriWithId(filedId);
 
         return ResponseEntity.created(locationUri).build();
+    }
+
+    @GetMapping("/crop-type")
+    public ResponseEntity<CropTypeResponse> getCropTypes() {
+        return ResponseEntity.ok(fieldService.getAllCropTypes());
     }
 
     @Operation(summary = "return all user's fields")

@@ -6,11 +6,13 @@ import agh.iss.wateritmiddleware.exception.ErrorSubcode;
 import agh.iss.wateritmiddleware.field.mapper.FieldMapper;
 import agh.iss.wateritmiddleware.field.model.FieldDto;
 import agh.iss.wateritmiddleware.field.model.request.FieldRequest;
+import agh.iss.wateritmiddleware.field.model.response.CropTypeResponse;
 import agh.iss.wateritmiddleware.measurement.MeasurementService;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -34,6 +36,12 @@ public class FieldService {
         measurementService.addMeasurementToField(createdField);
 
         return createdField.getId();
+    }
+
+    public CropTypeResponse getAllCropTypes() {
+        return CropTypeResponse.builder()
+                .cropTypes(Arrays.stream(CropType.values()).toList())
+                .build();
     }
 
     public List<FieldDto> getAllUserFields() {

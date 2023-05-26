@@ -6,6 +6,7 @@ import agh.iss.wateritmiddleware.field.CropType;
 import java.math.BigDecimal;
 
 public record FieldDto(
+        Long id,
         String name,
         BigDecimal area,
         CropType actualcropType,
