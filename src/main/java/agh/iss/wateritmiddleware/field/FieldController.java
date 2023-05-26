@@ -1,7 +1,6 @@
 package agh.iss.wateritmiddleware.field;
 
 import agh.iss.wateritmiddleware.field.model.FieldDto;
-import agh.iss.wateritmiddleware.field.model.ZoneDto;
 import agh.iss.wateritmiddleware.field.model.request.FieldRequest;
 import agh.iss.wateritmiddleware.utils.UriBuilder;
 import io.swagger.v3.oas.annotations.Operation;
