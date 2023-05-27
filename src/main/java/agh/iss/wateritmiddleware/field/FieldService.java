@@ -1,5 +1,6 @@
 package agh.iss.wateritmiddleware.field;
 
+import agh.iss.wateritmiddleware.device.DeviceService;
 import agh.iss.wateritmiddleware.exception.CoreException;
 import agh.iss.wateritmiddleware.exception.ErrorCode;
 import agh.iss.wateritmiddleware.exception.ErrorSubcode;
@@ -7,6 +8,8 @@ import agh.iss.wateritmiddleware.field.mapper.FieldMapper;
 import agh.iss.wateritmiddleware.field.model.FieldDto;
 import agh.iss.wateritmiddleware.field.model.request.FieldRequest;
 import agh.iss.wateritmiddleware.field.model.response.CropTypeResponse;
+import agh.iss.wateritmiddleware.measurement.Measurement;
+import agh.iss.wateritmiddleware.measurement.MeasurementRepository;
 import agh.iss.wateritmiddleware.measurement.MeasurementService;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +23,10 @@ import java.util.List;
 public class FieldService {
 
     private final FieldRepository fieldRepository;
-    private final MeasurementService measurementService;
+    private final MeasurementRepository measurementRepository;
     private final FieldMapper fieldMapper;
     private final CurrentUser currentUser;
+    private final DeviceService deviceService;
 
     public Long addField(FieldRequest request) {
         final var field = Field.builder()
@@ -33,9 +37,18 @@ public class FieldService {
                 .build();
 
         final var createdField = fieldRepository.save(field);
-        measurementService.addMeasurementToField(createdField);
+        assignMeasurementToField(createdField);
+        deviceService.addDeviceByExternalDeviceId(request.addDeviceRequest());
 
         return createdField.getId();
+    }
+
+    private void assignMeasurementToField(Field field) {
+        final var measurement = Measurement.builder()
+                .field(field)
+                .build();
+
+        measurementRepository.save(measurement);
     }
 
     public CropTypeResponse getAllCropTypes() {
@@ -54,6 +67,11 @@ public class FieldService {
         return fieldRepository.findById(fieldId)
                 .filter(field -> field.getUser().getId() == currentUser.getUserInfo().getId())
                 .map(fieldMapper::toDto)
+                .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
+    }
+
+    public Field getFieldByDeviceId(Long deviceId) {
+        return fieldRepository.findByDeviceId(deviceId)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
     }
 }
