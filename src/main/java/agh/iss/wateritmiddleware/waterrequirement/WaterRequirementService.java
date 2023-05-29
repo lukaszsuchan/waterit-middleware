@@ -30,7 +30,6 @@ public class WaterRequirementService {
                 .build();
 
         waterRequirementRepository.save(waterRequirement);
-
     }
 
     public WaterRequirementDto getLatestWaterRequirement(Long fieldId) {

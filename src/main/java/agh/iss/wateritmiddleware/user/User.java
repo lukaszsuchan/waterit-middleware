@@ -1,6 +1,7 @@
 package agh.iss.wateritmiddleware.user;
 
 import agh.iss.wateritmiddleware.field.Field;
+import agh.iss.wateritmiddleware.token.Token;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
