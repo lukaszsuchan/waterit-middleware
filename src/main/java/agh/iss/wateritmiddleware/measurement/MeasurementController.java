@@ -16,7 +16,7 @@ public class MeasurementController {
     private final MeasurementService measurementService;
 
     @PostMapping()
-    public ResponseEntity<Void> sendMeasurementFromDevice(MeasurementDto measurementDto) {
+    public ResponseEntity<Void> sendMeasurementFromDevice(@RequestBody MeasurementDto measurementDto) {
         measurementService.addMeasurement(measurementDto);
         return ResponseEntity.noContent().build();
     }

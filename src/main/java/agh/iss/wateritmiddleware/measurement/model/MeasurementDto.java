@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public record MeasurementDto(
-        @NotNull Date date,
+        Date date,
         BigDecimal lightIntensity,
         BigDecimal temperature,
         BigDecimal humidity,

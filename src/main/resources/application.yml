@@ -32,6 +32,9 @@ application:
       refresh-token:
         expiration: 604800000 # 7 days
 
+  prediction-model:
+    url: http://107.152.36.118:8000/predict
+
 logging:
   level:
     org.springframework.security: DEBUG

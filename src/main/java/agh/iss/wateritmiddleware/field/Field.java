@@ -3,6 +3,7 @@ package agh.iss.wateritmiddleware.field;
 import agh.iss.wateritmiddleware.device.Device;
 import agh.iss.wateritmiddleware.measurement.Measurement;
 import agh.iss.wateritmiddleware.user.User;
+import agh.iss.wateritmiddleware.waterrequirement.WaterRequirement;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,4 +32,6 @@ public class Field {
     private Device device;
     @OneToOne(mappedBy = "field", cascade = CascadeType.ALL)
     private Measurement measurement;
+    @OneToOne(mappedBy = "field", cascade = CascadeType.ALL)
+    private WaterRequirement waterRequirement;
 }

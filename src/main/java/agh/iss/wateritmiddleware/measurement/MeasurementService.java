@@ -11,9 +11,16 @@ import agh.iss.wateritmiddleware.measurement.model.MeasurementDto;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import agh.iss.wateritmiddleware.user.Role;
 import agh.iss.wateritmiddleware.user.User;
+import agh.iss.wateritmiddleware.waterrequirement.WaterRequirementService;
+import agh.iss.wateritmiddleware.waterrequirement.model.AirHumidityType;
+import agh.iss.wateritmiddleware.waterrequirement.model.PredictionModelRequest;
+import agh.iss.wateritmiddleware.waterrequirement.model.SoilType;
+import agh.iss.wateritmiddleware.waterrequirement.model.WeatherCondition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,7 +32,9 @@ public class MeasurementService {
     private final CurrentUser currentUser;
     private final DeviceService deviceService;
     private final FieldService fieldService;
+    private final WaterRequirementService waterRequirementService;
 
+    @Transactional
     public void addMeasurement(MeasurementDto measurementDto) {
         if(currentUser.getUserInfo().getRole() != Role.DEVICE) {
             throw new CoreException(ErrorCode.VALIDATION_ERROR, ErrorSubcode.NOT_DEVICE);
@@ -34,8 +43,19 @@ public class MeasurementService {
         Long deviceId = deviceService.getDeviceId(currentUser.getUserInfo().getUsername());
         Field field = fieldService.getFieldByDeviceId(deviceId);
 
+        final var predictionRequest = PredictionModelRequest.builder()
+                .soilType(SoilType.HUMID)
+                .airHumidityType(AirHumidityType.HUMID)
+                .weatherCondition(WeatherCondition.SUNNY)
+                .cropType(field.getActualCropType())
+                .temperature(measurementDto.temperature())
+                .build();
+
+        waterRequirementService.updateWaterRequirement(field, predictionRequest);
+
         Measurement measurement = measurementMapper.toJpa(measurementDto);
         measurement.setField(field);
+        measurement.setDate(new Date());
 
         measurementRepository.save(measurement);
     }
