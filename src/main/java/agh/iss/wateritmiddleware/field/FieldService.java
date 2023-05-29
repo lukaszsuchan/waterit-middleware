@@ -14,6 +14,7 @@ import agh.iss.wateritmiddleware.measurement.MeasurementService;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +29,7 @@ public class FieldService {
     private final CurrentUser currentUser;
     private final DeviceService deviceService;
 
+    @Transactional
     public Long addField(FieldRequest request) {
         final var field = Field.builder()
                 .name(request.name())
