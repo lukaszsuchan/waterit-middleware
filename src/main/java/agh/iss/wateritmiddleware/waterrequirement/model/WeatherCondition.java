@@ -1,8 +1,63 @@
 package agh.iss.wateritmiddleware.waterrequirement.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.function.Function;
+
+@AllArgsConstructor
 public enum WeatherCondition {
-    NORMAL,
-    RAINY,
-    SUNNY,
-    WINDY
+    NORMAL(lightIntensity -> new LightIntensity(1000.0f, 1999.999f),
+            temperature -> new Temperature(15.0f, 25.0f),
+            rainfall -> new Rainfall(15.0f, 49.999f)),
+    RAINY(lightIntensity -> new LightIntensity(500.0f, 999.999f),
+            temperature -> new Temperature(10.0f, 20.0f),
+            rainfall -> new Rainfall(50.0f, 100.0f)),
+    SUNNY(lightIntensity -> new LightIntensity(2000.0f, 5000.0f),
+            temperature -> new Temperature(25.0f, 60.0f),
+            rainfall -> new Rainfall(0.0f, 9.999f)),
+    WINDY(lightIntensity -> new LightIntensity(800.0f, 1500.0f),
+            temperature -> new Temperature(10.0f, 24.999f),
+            rainfall -> new Rainfall(0.0f, 1.0f));
+
+    private final Function<WeatherCondition, LightIntensity> lightIntensitySupplier;
+    private final Function<WeatherCondition, Temperature> temperatureSupplier;
+    private final Function<WeatherCondition, Rainfall> rainfallSupplier;
+
+    public LightIntensity getLightIntensity() {
+        return lightIntensitySupplier.apply(this);
+    }
+
+    public Temperature getTemperature() {
+        return temperatureSupplier.apply(this);
+    }
+
+    public Rainfall getRainfall() {
+        return rainfallSupplier.apply(this);
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class LightIntensity {
+        private float startValue;
+        private float endValue;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class Temperature {
+        private float startValue;
+        private float endValue;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class Rainfall {
+        private float startValue;
+        private float endValue;
+    }
 }
