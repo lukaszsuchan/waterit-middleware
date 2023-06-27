@@ -10,16 +10,16 @@ import java.util.function.Function;
 public enum WeatherCondition {
     NORMAL(lightIntensity -> new LightIntensity(1000.0f, 1999.999f),
             temperature -> new Temperature(15.0f, 25.0f),
-            rainfall -> new Rainfall(15.0f, 49.999f)),
+            rainfall -> new Rainfall(0)),
     RAINY(lightIntensity -> new LightIntensity(500.0f, 999.999f),
             temperature -> new Temperature(10.0f, 20.0f),
-            rainfall -> new Rainfall(50.0f, 100.0f)),
+            rainfall -> new Rainfall(1)),
     SUNNY(lightIntensity -> new LightIntensity(2000.0f, 5000.0f),
             temperature -> new Temperature(25.0f, 60.0f),
-            rainfall -> new Rainfall(0.0f, 9.999f)),
+            rainfall -> new Rainfall(0)),
     WINDY(lightIntensity -> new LightIntensity(800.0f, 1500.0f),
             temperature -> new Temperature(10.0f, 24.999f),
-            rainfall -> new Rainfall(0.0f, 1.0f));
+            rainfall -> new Rainfall(0));
 
     private final Function<WeatherCondition, LightIntensity> lightIntensitySupplier;
     private final Function<WeatherCondition, Temperature> temperatureSupplier;
@@ -53,11 +53,12 @@ public enum WeatherCondition {
         private float endValue;
     }
 
-    @Getter
-    @Setter
     @AllArgsConstructor
     public static class Rainfall {
-        private float startValue;
-        private float endValue;
+        private int isRaining;
+
+        public int isRaining() {
+            return this.isRaining;
+        }
     }
 }

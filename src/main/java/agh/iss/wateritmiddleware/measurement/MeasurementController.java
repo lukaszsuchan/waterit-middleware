@@ -20,7 +20,6 @@ public class MeasurementController {
         measurementService.addMeasurement(measurementDto);
         return ResponseEntity.noContent().build();
     }
-
     @GetMapping("/latest")
     public ResponseEntity<MeasurementDto> getLatestMeasurement(@RequestParam Long fieldId) {
         return ResponseEntity.ok(measurementService.getLatestMeasurementByFieldId(fieldId));

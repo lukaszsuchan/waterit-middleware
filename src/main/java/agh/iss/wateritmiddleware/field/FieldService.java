@@ -1,5 +1,6 @@
 package agh.iss.wateritmiddleware.field;
 
+import agh.iss.wateritmiddleware.device.Device;
 import agh.iss.wateritmiddleware.device.DeviceService;
 import agh.iss.wateritmiddleware.exception.CoreException;
 import agh.iss.wateritmiddleware.exception.ErrorCode;
@@ -72,8 +73,8 @@ public class FieldService {
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
     }
 
-    public Field getFieldByDeviceId(Long deviceId) {
-        return fieldRepository.findByDeviceId(deviceId)
+    public Field getFieldByDevice(Device device) {
+        return fieldRepository.findByDevice(device)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.FIELD_NOT_FOUND));
     }
 }

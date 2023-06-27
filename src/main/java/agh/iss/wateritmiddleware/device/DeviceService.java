@@ -27,7 +27,7 @@ public class DeviceService {
         return device.getId();
     }
 
-    public Long getDeviceId(String externalDeviceId) {
-        return deviceRepository.findIdByExternalDeviceId(externalDeviceId);
+    public Device getDevice(String externalDeviceId) {
+        return deviceRepository.findByExternalDeviceId(externalDeviceId).get();
     }
 }

@@ -20,5 +20,5 @@ public class Device {
     private String externalDeviceId;
     private boolean active;
     @OneToOne(mappedBy = "device", orphanRemoval = true)
-    private Field zone;
+    private Field field;
 }

@@ -30,6 +30,8 @@ public class Field {
     private User user;
     @OneToOne
     private Device device;
+    @Column(name = "device_id", insertable = false, updatable = false)
+    private Long deviceId;
     @OneToOne(mappedBy = "field", cascade = CascadeType.ALL)
     private Measurement measurement;
     @OneToOne(mappedBy = "field", cascade = CascadeType.ALL)

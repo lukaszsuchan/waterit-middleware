@@ -1,5 +1,6 @@
 package agh.iss.wateritmiddleware.measurement;
 
+import agh.iss.wateritmiddleware.device.Device;
 import agh.iss.wateritmiddleware.device.DeviceService;
 import agh.iss.wateritmiddleware.exception.CoreException;
 import agh.iss.wateritmiddleware.exception.ErrorCode;
@@ -34,8 +35,8 @@ public class MeasurementService {
             throw new CoreException(ErrorCode.VALIDATION_ERROR, ErrorSubcode.NOT_DEVICE);
         }
 
-        Long deviceId = deviceService.getDeviceId(currentUser.getUserInfo().getUsername());
-        Field field = fieldService.getFieldByDeviceId(deviceId);
+        Device device = deviceService.getDevice(currentUser.getUserInfo().getUsername());
+        Field field = fieldService.getFieldByDevice(device);
 
         waterRequirementService.updateWaterRequirement(field, measurementDto);
 

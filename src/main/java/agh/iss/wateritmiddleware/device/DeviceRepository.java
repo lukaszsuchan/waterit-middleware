@@ -11,5 +11,5 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
     Optional<Device> findByExternalDeviceId(String externalDeviceId);
 
     @Query("SELECT d.id FROM Device d WHERE d.externalDeviceId = :externalDeviceId")
-    Long findIdByExternalDeviceId(@Param("externalDeviceId") String externalDeviceId);
+    Device findIdByExternalDeviceId(@Param("externalDeviceId") String externalDeviceId);
 }

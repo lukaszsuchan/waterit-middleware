@@ -26,8 +26,7 @@ public class WeatherConditionService {
                     && temperature.compareTo(BigDecimal.valueOf(temperatureFitter.getEndValue())) <= 0;
 
             WeatherCondition.Rainfall rainfallFitter = weatherCondition.getRainfall();
-            boolean isRainfallFit = rainfall.compareTo(BigDecimal.valueOf(rainfallFitter.getStartValue())) >= 0
-                    && rainfall.compareTo(BigDecimal.valueOf(rainfallFitter.getEndValue())) <= 0;
+            boolean isRainfallFit = rainfall.intValue() != rainfallFitter.isRaining();
 
             if (isLightIntensityFit && isTemperatureFit && isRainfallFit) {
                 return weatherCondition;
