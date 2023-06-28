@@ -24,6 +24,7 @@ spring:
     default-schema: public
     drop-first: false
 
+
 application:
   security:
     jwt:
@@ -39,6 +40,9 @@ logging:
   level:
     org.springframework.security: DEBUG
     springfox: DEBUG
+  file:
+    name: 'waterit.log'
+    path: '/root'
 
 springdoc:
   api-docs:
