@@ -1,5 +1,6 @@
-package agh.iss.wateritmiddleware.measurement;
+package agh.iss.wateritmiddleware.measurement.mapper;
 
+import agh.iss.wateritmiddleware.measurement.Measurement;
 import agh.iss.wateritmiddleware.measurement.model.MeasurementDto;
 import org.mapstruct.Mapper;
 

@@ -1084,3 +1084,51 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2023-06-28T15:13:25Z. Curren
 2023-06-28T17:41:58.913+02:00 DEBUG 138231 --- [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /measurement/latest?fieldId=2
 2023-06-28T17:42:19.266+02:00 DEBUG 138231 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /water-requirement?fieldId=2
 2023-06-28T17:42:19.276+02:00 DEBUG 138231 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /water-requirement?fieldId=2
+2023-06-28T21:13:26.310+02:00  INFO 138231 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-28T21:13:26.313+02:00  INFO 138231 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-28T21:13:26.315+02:00  INFO 138231 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-06-28T21:14:47.697+02:00  INFO 149427 --- [main] a.i.w.WateritApplication                 : Starting WateritApplication using Java 17.0.3 with PID 149427 (/home/lsuchan/studia/iss/waterit-middleware/target/classes started by lsuchan in /home/lsuchan/studia/iss/waterit-middleware)
+2023-06-28T21:14:47.699+02:00  INFO 149427 --- [main] a.i.w.WateritApplication                 : No active profile set, falling back to 1 default profile: "default"
+2023-06-28T21:14:48.314+02:00  INFO 149427 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-28T21:14:48.377+02:00  INFO 149427 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 6 JPA repository interfaces.
+2023-06-28T21:14:48.789+02:00  INFO 149427 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-06-28T21:14:48.797+02:00  INFO 149427 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-28T21:14:48.797+02:00  INFO 149427 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-06-28T21:14:48.859+02:00  INFO 149427 --- [main] o.a.c.c.C.[.[localhost].[/waterit/api]   : Initializing Spring embedded WebApplicationContext
+2023-06-28T21:14:48.859+02:00  INFO 149427 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1129 ms
+2023-06-28T21:14:48.940+02:00  INFO 149427 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-28T21:14:49.051+02:00  INFO 149427 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3830b06c
+2023-06-28T21:14:49.053+02:00  INFO 149427 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-28T21:14:49.224+02:00  INFO 149427 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-06-28T21:14:49.257+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-212736_changelog.postgresql.sql
+2023-06-28T21:14:49.265+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-221551_changelog.postgresql.sql
+2023-06-28T21:14:49.267+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-224709_changelog.postgresql.sql
+2023-06-28T21:14:49.269+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-05-110715_changelog.postgresql.sql
+2023-06-28T21:14:49.271+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-05-112108_changelog.postgresql.sql
+2023-06-28T21:14:49.273+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-06-080246_changelog.postgresql.sql
+2023-06-28T21:14:49.274+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-26-124400_changelog.postgresql.sql
+2023-06-28T21:14:49.277+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-29-112426_changelog.postgresql.sql
+2023-06-28T21:14:49.326+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-06-28T21:14:49.432+02:00  INFO 149427 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-06-28T21:14:49.474+02:00  INFO 149427 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-06-28T21:14:49.539+02:00  INFO 149427 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-28T21:14:49.575+02:00  INFO 149427 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-06-28T21:14:49.770+02:00  INFO 149427 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-06-28T21:14:49.771+02:00  WARN 149427 --- [main] org.hibernate.orm.deprecation            : HHH90000026: PostgreSQL95Dialect has been deprecated; use org.hibernate.dialect.PostgreSQLDialect instead
+2023-06-28T21:14:50.451+02:00  INFO 149427 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-28T21:14:50.460+02:00  INFO 149427 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-28T21:14:51.176+02:00  WARN 149427 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-28T21:14:51.579+02:00  INFO 149427 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4620e669, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b93a232, org.springframework.security.web.context.SecurityContextHolderFilter@2474331d, org.springframework.security.web.header.HeaderWriterFilter@7ba70b3b, org.springframework.web.filter.CorsFilter@6c6fdf5d, org.springframework.security.web.authentication.logout.LogoutFilter@1d63f6be, agh.iss.wateritmiddleware.config.JwtAuthenticationFilter@4f571c0e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24eb71f6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@15eaa2ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@187c8f96, org.springframework.security.web.session.SessionManagementFilter@5576eef4, org.springframework.security.web.access.ExceptionTranslationFilter@8829ecd, org.springframework.security.web.access.intercept.AuthorizationFilter@3020f22]
+2023-06-28T21:14:51.805+02:00  INFO 149427 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/waterit/api'
+2023-06-28T21:14:51.814+02:00  INFO 149427 --- [main] a.i.w.WateritApplication                 : Started WateritApplication in 4.543 seconds (process running for 5.374)
+2023-06-28T21:15:42.114+02:00  INFO 149427 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/waterit/api]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-28T21:15:42.115+02:00  INFO 149427 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-28T21:15:42.117+02:00  INFO 149427 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-06-28T21:15:42.124+02:00 DEBUG 149427 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2023-06-28T21:15:42.140+02:00 DEBUG 149427 --- [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2023-06-28T21:15:42.142+02:00 DEBUG 149427 --- [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2023-06-28T21:15:42.470+02:00 DEBUG 149427 --- [http-nio-8080-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2023-06-28T21:15:54.984+02:00 DEBUG 149427 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /water-requirement?fieldId=2
+2023-06-28T21:15:55.036+02:00 DEBUG 149427 --- [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /water-requirement?fieldId=2
+2023-06-28T21:16:21.310+02:00 DEBUG 149427 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /measurement/latest?fieldId=2
+2023-06-28T21:16:21.319+02:00 DEBUG 149427 --- [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /measurement/latest?fieldId=2

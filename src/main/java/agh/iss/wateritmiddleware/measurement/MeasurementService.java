@@ -7,6 +7,8 @@ import agh.iss.wateritmiddleware.exception.ErrorCode;
 import agh.iss.wateritmiddleware.exception.ErrorSubcode;
 import agh.iss.wateritmiddleware.field.Field;
 import agh.iss.wateritmiddleware.field.FieldService;
+import agh.iss.wateritmiddleware.measurement.mapper.MeasurementMapper;
+import agh.iss.wateritmiddleware.measurement.mapper.MeasurementPercentageMapper;
 import agh.iss.wateritmiddleware.measurement.model.MeasurementDto;
 import agh.iss.wateritmiddleware.user.CurrentUser;
 import agh.iss.wateritmiddleware.user.Role;
@@ -25,6 +27,7 @@ public class MeasurementService {
 
     private final MeasurementRepository measurementRepository;
     private final MeasurementMapper measurementMapper;
+    private final MeasurementPercentageMapper measurementPercentageMapper;
     private final CurrentUser currentUser;
     private final DeviceService deviceService;
     private final FieldService fieldService;
@@ -57,17 +60,14 @@ public class MeasurementService {
             measurement.setTemperature(measurementDto.temperature());
             measurement.setMoistureHumidity(measurementDto.moistureHumidity());
             measurement.setRainfall(measurementDto.rainfall());
-
-
         }
         measurementRepository.save(measurement);
-
 
     }
 
     public MeasurementDto getLatestMeasurementByFieldId(Long fieldId) {
         return measurementRepository.findLatestByFieldIdOrderByDateDesc(fieldId)
-                .map(measurementMapper::toDto)
+                .map(measurementPercentageMapper::toPercentageData)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.MEASUREMENT_NOT_FOUND));
     }
 

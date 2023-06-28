@@ -2,7 +2,7 @@ package agh.iss.wateritmiddleware.field.mapper;
 
 import agh.iss.wateritmiddleware.field.Field;
 import agh.iss.wateritmiddleware.field.model.FieldDto;
-import agh.iss.wateritmiddleware.measurement.MeasurementMapper;
+import agh.iss.wateritmiddleware.measurement.mapper.MeasurementMapper;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring",
