@@ -41,8 +41,8 @@ logging:
     org.springframework.security: DEBUG
     springfox: DEBUG
   file:
-    name: 'waterit.log'
-    path: '/root'
+    name: waterit.log
+    path: .
 
 springdoc:
   api-docs:
