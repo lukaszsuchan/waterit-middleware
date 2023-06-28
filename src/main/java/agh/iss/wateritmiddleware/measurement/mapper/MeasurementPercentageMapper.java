@@ -17,12 +17,12 @@ public class MeasurementPercentageMapper {
                 .date(measurement.getDate())
                 .lightIntensity(BigDecimal.valueOf(
                         mapDataToPercentage(0f, 1000f, measurement.getLightIntensity().floatValue())
-                ))
+                ).setScale(2, RoundingMode.HALF_UP))
                 .temperature(measurement.getTemperature())
                 .rainfall(measurement.getRainfall())
                 .humidity(measurement.getHumidity().divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP))
                 .moistureHumidity(measurement.getMoistureHumidity().divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP))
-                .airPurity(BigDecimal.valueOf(mapDataToPercentage(400f, 2000f, measurement.getAirPurity().floatValue())))
+                .airPurity(BigDecimal.valueOf(mapDataToPercentage(400f, 2000f, measurement.getAirPurity().floatValue())).setScale(2, RoundingMode.HALF_UP))
                 .build();
     }
 
