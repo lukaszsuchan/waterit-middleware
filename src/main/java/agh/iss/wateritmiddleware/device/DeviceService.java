@@ -14,7 +14,7 @@ public class DeviceService {
     private final DeviceRepository deviceRepository;
     private final DeviceMapper deviceMapper;
 
-    public Long addDeviceByExternalDeviceId(AddDeviceRequest request) {
+    public Device addDeviceByExternalDeviceId(AddDeviceRequest request) {
         Device device = deviceRepository.findByExternalDeviceId(request.externalDeviceId())
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.DEVICE_NOT_FOUND));
 
@@ -24,7 +24,7 @@ public class DeviceService {
             throw new CoreException(ErrorCode.VALIDATION_ERROR, ErrorSubcode.DEVICE_IS_ALREADY_IN_USE);
         }
 
-        return device.getId();
+        return device;
     }
 
     public Device getDevice(String externalDeviceId) {

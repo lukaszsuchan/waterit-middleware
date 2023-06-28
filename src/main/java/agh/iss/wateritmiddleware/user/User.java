@@ -1,7 +1,6 @@
 package agh.iss.wateritmiddleware.user;
 
 import agh.iss.wateritmiddleware.field.Field;
-import agh.iss.wateritmiddleware.token.Token;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -11,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 
 @Builder
@@ -38,8 +37,8 @@ public class User implements UserDetails {
     private Role role;
     @Getter
     @Setter
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private transient List<Field> fields;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private Set<Field> fields;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

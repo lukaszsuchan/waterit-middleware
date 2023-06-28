@@ -37,11 +37,11 @@ public class FieldService {
                 .area(request.area())
                 .actualCropType(request.actualCropType())
                 .user(currentUser.getUserInfo())
+                .device(deviceService.addDeviceByExternalDeviceId(request.addDeviceRequest()))
                 .build();
 
         final var createdField = fieldRepository.save(field);
         assignMeasurementToField(createdField);
-        deviceService.addDeviceByExternalDeviceId(request.addDeviceRequest());
 
         return createdField.getId();
     }
