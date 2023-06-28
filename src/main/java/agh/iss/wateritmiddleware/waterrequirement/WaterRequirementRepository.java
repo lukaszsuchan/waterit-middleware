@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface WaterRequirementRepository extends JpaRepository<WaterRequirement, Long> {
 
-    Optional<WaterRequirement> findTopByFieldIdOrderByDateDesc(Long fieldId);
+    Optional<WaterRequirement> findFirstByFieldIdOrderByDateDesc(Long fieldId);
 }
