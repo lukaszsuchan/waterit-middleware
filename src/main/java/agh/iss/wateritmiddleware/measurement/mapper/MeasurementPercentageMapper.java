@@ -20,11 +20,11 @@ public class MeasurementPercentageMapper {
                 .rainfall(measurement.getRainfall())
                 .humidity(measurement.getHumidity().divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP))
                 .moistureHumidity(measurement.getMoistureHumidity().divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP))
-                .airPurity(mapDataToPercentage(BigDecimal.valueOf(400), BigDecimal.valueOf(2000), measurement.getAirPurity()))
+                .airPurity(mapDataToPercentage(BigDecimal.valueOf(200), BigDecimal.valueOf(1800), measurement.getAirPurity()))
                 .build();
     }
 
     private BigDecimal mapDataToPercentage(BigDecimal minValue, BigDecimal maxValue, BigDecimal value) {
-        return (value.add(minValue.negate())).divide(maxValue.add(minValue.negate())).setScale(2, RoundingMode.HALF_UP);
+        return (value.add(minValue.negate())).divide(maxValue.add(minValue.negate())).multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP);
     }
 }
