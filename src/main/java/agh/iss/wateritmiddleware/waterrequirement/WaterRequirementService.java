@@ -47,7 +47,7 @@ public class WaterRequirementService {
     }
 
     public WaterRequirementDto getLatestWaterRequirement(Long fieldId) {
-        return waterRequirementRepository.findTopByFieldIdOrderByDateDesc(fieldId)
+        return waterRequirementRepository.findFirstByFieldIdOrderByDateDesc(fieldId)
                 .map(waterRequirementMapper::toDto)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.WATER_REQUIREMENT_NOT_FOUND));
     }

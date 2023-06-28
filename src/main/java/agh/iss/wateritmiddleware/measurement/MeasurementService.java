@@ -48,7 +48,7 @@ public class MeasurementService {
     }
 
     public MeasurementDto getLatestMeasurementByFieldId(Long fieldId) {
-        return measurementRepository.findTopByFieldIdOrderByDateDesc(fieldId)
+        return measurementRepository.findFirstByFieldIdOrderByDateDesc(fieldId)
                 .map(measurementMapper::toDto)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.MEASUREMENT_NOT_FOUND));
     }
