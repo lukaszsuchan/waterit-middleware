@@ -15,18 +15,16 @@ public class MeasurementPercentageMapper {
     public MeasurementDto toPercentageData(Measurement measurement) {
         return MeasurementDto.builder()
                 .date(measurement.getDate())
-                .lightIntensity(BigDecimal.valueOf(
-                        mapDataToPercentage(0f, 1000f, measurement.getLightIntensity().floatValue())
-                ).setScale(2, RoundingMode.HALF_UP))
+                .lightIntensity(mapDataToPercentage(BigDecimal.ZERO, BigDecimal.valueOf(1000), measurement.getLightIntensity()))
                 .temperature(measurement.getTemperature())
                 .rainfall(measurement.getRainfall())
                 .humidity(measurement.getHumidity().divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP))
                 .moistureHumidity(measurement.getMoistureHumidity().divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP))
-                .airPurity(BigDecimal.valueOf(mapDataToPercentage(400f, 2000f, measurement.getAirPurity().floatValue())).setScale(2, RoundingMode.HALF_UP))
+                .airPurity(mapDataToPercentage(BigDecimal.valueOf(400), BigDecimal.valueOf(2000), measurement.getAirPurity()))
                 .build();
     }
 
-    private float mapDataToPercentage(float minValue, float maxValue, float value) {
-        return (value - minValue) / (maxValue - minValue);
+    private BigDecimal mapDataToPercentage(BigDecimal minValue, BigDecimal maxValue, BigDecimal value) {
+        return (value.add(minValue.negate())).divide(maxValue.add(minValue.negate())).setScale(2, RoundingMode.HALF_UP);
     }
 }
