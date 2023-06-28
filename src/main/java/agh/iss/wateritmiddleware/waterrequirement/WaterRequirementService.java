@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,13 +38,23 @@ public class WaterRequirementService {
 
         final var response = predictionModelConnector.getPrediction(predictionModelRequest);
 
-        WaterRequirement waterRequirement = WaterRequirement.builder()
-                .date(new Date())
-                .value(response.prediction())
-                .field(field)
-                .build();
 
+        Optional<WaterRequirement> currentWaterRequirementOpt = waterRequirementRepository.findFirstByFieldIdOrderByDateDesc(field.getId());
+        WaterRequirement waterRequirement;
+        if (currentWaterRequirementOpt.isEmpty()) {
+            waterRequirement = WaterRequirement.builder()
+                    .date(new Date())
+                    .value(response.prediction())
+                    .field(field)
+                    .build();
+        } else {
+            waterRequirement = currentWaterRequirementOpt.get();
+            waterRequirement.setDate(new Date());
+            waterRequirement.setValue(response.prediction());
+        }
         waterRequirementRepository.save(waterRequirement);
+
+
     }
 
     public WaterRequirementDto getLatestWaterRequirement(Long fieldId) {

@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,15 +41,32 @@ public class MeasurementService {
 
         waterRequirementService.updateWaterRequirement(field, measurementDto);
 
-        Measurement measurement = measurementMapper.toJpa(measurementDto);
-        measurement.setField(field);
-        measurement.setDate(new Date());
+        Optional<Measurement> measurementOptional = measurementRepository.findLatestByFieldIdOrderByDateDesc(field.getId());
+        Measurement measurement;
+        if (measurementOptional.isEmpty()) {
+            measurement = measurementMapper.toJpa(measurementDto);
+            measurement.setField(field);
+            measurement.setDate(new Date());
 
+        } else {
+            measurement = measurementOptional.get();
+            measurement.setDate(new Date());
+            measurement.setHumidity(measurementDto.humidity());
+            measurement.setAirPurity(measurementDto.airPurity());
+            measurement.setLightIntensity(measurementDto.lightIntensity());
+            measurement.setTemperature(measurementDto.temperature());
+            measurement.setMoistureHumidity(measurementDto.moistureHumidity());
+            measurement.setRainfall(measurementDto.rainfall());
+
+
+        }
         measurementRepository.save(measurement);
+
+
     }
 
     public MeasurementDto getLatestMeasurementByFieldId(Long fieldId) {
-        return measurementRepository.findFirstByFieldIdOrderByDateDesc(fieldId)
+        return measurementRepository.findLatestByFieldIdOrderByDateDesc(fieldId)
                 .map(measurementMapper::toDto)
                 .orElseThrow(() -> new CoreException(ErrorCode.NOT_FOUND, ErrorSubcode.MEASUREMENT_NOT_FOUND));
     }
