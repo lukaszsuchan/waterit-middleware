@@ -15,7 +15,7 @@ public class MeasurementPercentageMapper {
     public MeasurementDto toPercentageData(Measurement measurement) {
         return MeasurementDto.builder()
                 .date(measurement.getDate())
-                .lightIntensity(mapDataToPercentage(BigDecimal.ZERO, BigDecimal.valueOf(2000), measurement.getLightIntensity()))
+                .lightIntensity(mapDataToPercentage(BigDecimal.ZERO, BigDecimal.valueOf(2500), measurement.getLightIntensity()))
                 .temperature(measurement.getTemperature())
                 .rainfall(measurement.getRainfall())
                 .humidity(measurement.getHumidity().divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP))
