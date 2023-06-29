@@ -25,6 +25,7 @@ public class MeasurementPercentageMapper {
     }
 
     private BigDecimal mapDataToPercentage(BigDecimal minValue, BigDecimal maxValue, BigDecimal value) {
-        return (value.add(minValue.negate())).divide(maxValue.add(minValue.negate())).multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP);
+        return value.add(minValue.negate()).divide(maxValue.add(minValue.negate()), 2, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100)).setScale(2, RoundingMode.HALF_UP);
     }
 }
