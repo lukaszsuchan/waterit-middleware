@@ -27,7 +27,8 @@ public class Measurement {
     private BigDecimal moistureHumidity;
     private BigDecimal rainfall;
     private BigDecimal airPurity;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "field_id", referencedColumnName = "id")
     private Field field;
 
     @AssertTrue(message = "Measurement can only be assigned to field")

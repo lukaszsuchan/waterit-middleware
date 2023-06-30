@@ -39,22 +39,13 @@ public class WaterRequirementService {
         final var response = predictionModelConnector.getPrediction(predictionModelRequest);
 
 
-        Optional<WaterRequirement> currentWaterRequirementOpt = waterRequirementRepository.findFirstByFieldIdOrderByDateDesc(field.getId());
-        WaterRequirement waterRequirement;
-        if (currentWaterRequirementOpt.isEmpty()) {
-            waterRequirement = WaterRequirement.builder()
-                    .date(new Date())
-                    .value(response.prediction())
-                    .field(field)
-                    .build();
-        } else {
-            waterRequirement = currentWaterRequirementOpt.get();
-            waterRequirement.setDate(new Date());
-            waterRequirement.setValue(response.prediction());
-        }
+        WaterRequirement waterRequirement = WaterRequirement.builder()
+                .date(new Date())
+                .value(response.prediction())
+                .field(field)
+                .build();
+
         waterRequirementRepository.save(waterRequirement);
-
-
     }
 
     public WaterRequirementDto getLatestWaterRequirement(Long fieldId) {

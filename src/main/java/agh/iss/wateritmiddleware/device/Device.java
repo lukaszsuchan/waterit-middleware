@@ -19,6 +19,4 @@ public class Device {
     @Column(unique = true)
     private String externalDeviceId;
     private boolean active;
-    @OneToOne(mappedBy = "device", orphanRemoval = true)
-    private Field field;
 }

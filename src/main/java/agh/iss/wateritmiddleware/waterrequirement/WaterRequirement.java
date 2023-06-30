@@ -21,6 +21,7 @@ public class WaterRequirement {
     private Long id;
     private Date date;
     private BigDecimal value;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "field_id", referencedColumnName = "id")
     private Field field;
 }

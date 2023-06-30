@@ -1,0 +1,80 @@
+2023-06-30T12:12:24.538+02:00  WARN 338496 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/lsuchan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/lsuchan/.m2/repository/org/json/json/20230227/json-20230227.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2023-06-30T12:12:24.558+02:00  INFO 338496 --- [main] a.i.w.WateritApplicationTests            : Starting WateritApplicationTests using Java 17.0.3 with PID 338496 (started by lsuchan in /home/lsuchan/studia/iss/waterit-middleware)
+2023-06-30T12:12:24.560+02:00  INFO 338496 --- [main] a.i.w.WateritApplicationTests            : No active profile set, falling back to 1 default profile: "default"
+2023-06-30T12:12:25.478+02:00  INFO 338496 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-30T12:12:25.579+02:00  INFO 338496 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 6 JPA repository interfaces.
+2023-06-30T12:12:26.099+02:00  INFO 338496 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-30T12:12:26.272+02:00  INFO 338496 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1f4f0fcc
+2023-06-30T12:12:26.274+02:00  INFO 338496 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-30T12:12:26.553+02:00  INFO 338496 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-06-30T12:12:26.601+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-212736_changelog.postgresql.sql
+2023-06-30T12:12:26.615+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-221551_changelog.postgresql.sql
+2023-06-30T12:12:26.617+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-224709_changelog.postgresql.sql
+2023-06-30T12:12:26.620+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-05-110715_changelog.postgresql.sql
+2023-06-30T12:12:26.623+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-05-112108_changelog.postgresql.sql
+2023-06-30T12:12:26.627+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-06-080246_changelog.postgresql.sql
+2023-06-30T12:12:26.630+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-26-124400_changelog.postgresql.sql
+2023-06-30T12:12:26.635+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-29-112426_changelog.postgresql.sql
+2023-06-30T12:12:26.712+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-06-30T12:12:26.829+02:00  INFO 338496 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-06-30T12:12:26.862+02:00  INFO 338496 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-06-30T12:12:26.966+02:00  INFO 338496 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-30T12:12:27.023+02:00  INFO 338496 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-06-30T12:12:27.273+02:00  INFO 338496 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-06-30T12:12:27.275+02:00  WARN 338496 --- [main] org.hibernate.orm.deprecation            : HHH90000026: PostgreSQL95Dialect has been deprecated; use org.hibernate.dialect.PostgreSQLDialect instead
+2023-06-30T12:12:28.085+02:00  INFO 338496 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-30T12:12:28.092+02:00  INFO 338496 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-30T12:12:29.134+02:00  WARN 338496 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-30T12:12:30.002+02:00  INFO 338496 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d82e396, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@181a6784, org.springframework.security.web.context.SecurityContextHolderFilter@b257072, org.springframework.security.web.header.HeaderWriterFilter@3de507af, org.springframework.web.filter.CorsFilter@a589070, org.springframework.security.web.authentication.logout.LogoutFilter@5b5f48d5, agh.iss.wateritmiddleware.config.JwtAuthenticationFilter@2926f7bd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b513ce8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b5f72fa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@747216b6, org.springframework.security.web.session.SessionManagementFilter@4af8ff3, org.springframework.security.web.access.ExceptionTranslationFilter@f61f06e, org.springframework.security.web.access.intercept.AuthorizationFilter@4ce4c097]
+2023-06-30T12:12:30.366+02:00  INFO 338496 --- [main] a.i.w.WateritApplicationTests            : Started WateritApplicationTests in 6.194 seconds (process running for 7.1)
+2023-06-30T12:12:30.581+02:00  INFO 338496 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-30T12:12:30.586+02:00  INFO 338496 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-30T12:12:30.595+02:00  INFO 338496 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-06-30T12:13:48.078+02:00  WARN 339126 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/lsuchan/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/home/lsuchan/.m2/repository/org/json/json/20230227/json-20230227.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2023-06-30T12:13:48.102+02:00  INFO 339126 --- [main] a.i.w.WateritApplicationTests            : Starting WateritApplicationTests using Java 17.0.3 with PID 339126 (started by lsuchan in /home/lsuchan/studia/iss/waterit-middleware)
+2023-06-30T12:13:48.104+02:00  INFO 339126 --- [main] a.i.w.WateritApplicationTests            : No active profile set, falling back to 1 default profile: "default"
+2023-06-30T12:13:49.256+02:00  INFO 339126 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-30T12:13:49.367+02:00  INFO 339126 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 6 JPA repository interfaces.
+2023-06-30T12:13:49.983+02:00  INFO 339126 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-30T12:13:50.268+02:00  INFO 339126 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@66749eea
+2023-06-30T12:13:50.270+02:00  INFO 339126 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-30T12:13:50.619+02:00  INFO 339126 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-06-30T12:13:50.679+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-212736_changelog.postgresql.sql
+2023-06-30T12:13:50.698+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-221551_changelog.postgresql.sql
+2023-06-30T12:13:50.702+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-04-224709_changelog.postgresql.sql
+2023-06-30T12:13:50.706+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-05-110715_changelog.postgresql.sql
+2023-06-30T12:13:50.711+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-05-112108_changelog.postgresql.sql
+2023-06-30T12:13:50.715+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-06-080246_changelog.postgresql.sql
+2023-06-30T12:13:50.719+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-26-124400_changelog.postgresql.sql
+2023-06-30T12:13:50.726+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading resource: db/changelog/changes/2023-05-29-112426_changelog.postgresql.sql
+2023-06-30T12:13:50.843+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-06-30T12:13:51.000+02:00  INFO 339126 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-06-30T12:13:51.053+02:00  INFO 339126 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-06-30T12:13:51.212+02:00  INFO 339126 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-30T12:13:51.290+02:00  INFO 339126 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-06-30T12:13:51.675+02:00  INFO 339126 --- [main] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2023-06-30T12:13:51.677+02:00  WARN 339126 --- [main] org.hibernate.orm.deprecation            : HHH90000026: PostgreSQL95Dialect has been deprecated; use org.hibernate.dialect.PostgreSQLDialect instead
+2023-06-30T12:13:52.799+02:00  INFO 339126 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-30T12:13:52.810+02:00  INFO 339126 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-30T12:13:54.112+02:00  WARN 339126 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-30T12:13:55.324+02:00  INFO 339126 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3eb4fdd5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19070326, org.springframework.security.web.context.SecurityContextHolderFilter@79f6b43a, org.springframework.security.web.header.HeaderWriterFilter@4bda93f1, org.springframework.web.filter.CorsFilter@52dfd7f5, org.springframework.security.web.authentication.logout.LogoutFilter@16576a6, agh.iss.wateritmiddleware.config.JwtAuthenticationFilter@4779df3d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8d0253b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@349504d5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b5f48d5, org.springframework.security.web.session.SessionManagementFilter@54aacbc7, org.springframework.security.web.access.ExceptionTranslationFilter@57f31caf, org.springframework.security.web.access.intercept.AuthorizationFilter@695f382c]
+2023-06-30T12:13:55.794+02:00  INFO 339126 --- [main] a.i.w.WateritApplicationTests            : Started WateritApplicationTests in 8.109 seconds (process running for 9.086)
+2023-06-30T12:13:56.121+02:00  INFO 339126 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-30T12:13:56.126+02:00  INFO 339126 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-30T12:13:56.131+02:00  INFO 339126 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
