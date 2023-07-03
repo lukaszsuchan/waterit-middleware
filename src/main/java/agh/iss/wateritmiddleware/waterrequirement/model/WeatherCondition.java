@@ -8,14 +8,14 @@ import java.util.function.Function;
 
 @AllArgsConstructor
 public enum WeatherCondition {
-    NORMAL(lightIntensity -> new LightIntensity(100.0f, 1999.999f),
+    NORMAL(lightIntensity -> new LightIntensity(100.0f, 10000.999f),
             temperature -> new Temperature(15.0f, 25.0f),
             rainfall -> new Rainfall(0)),
-    RAINY(lightIntensity -> new LightIntensity(100.0f, 999.999f),
+    RAINY(lightIntensity -> new LightIntensity(100.0f, 10000.999f),
             temperature -> new Temperature(10.0f, 40.0f),
             rainfall -> new Rainfall(1)),
-    SUNNY(lightIntensity -> new LightIntensity(2000.0f, 5000.0f),
-            temperature -> new Temperature(25.0f, 60.0f),
+    SUNNY(lightIntensity -> new LightIntensity(10001.0f, 70000.0f),
+            temperature -> new Temperature(20.0f, 60.0f),
             rainfall -> new Rainfall(0)),
     WINDY(lightIntensity -> new LightIntensity(800.0f, 1500.0f),
             temperature -> new Temperature(10.0f, 24.999f),
